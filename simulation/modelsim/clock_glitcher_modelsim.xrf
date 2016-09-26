@@ -1,0 +1,7 @@
+vendor_name = ModelSim
+source_file = 1, /home/pp/apps/altera/top.v
+source_file = 1, /home/pp/apps/altera/db/clock_glitcher.cbx.xml
+design_name = clock_glitcher
+instance = comp, \glitch~output\, glitch~output, clock_glitcher, 1
+instance = comp, \clk~input\, clk~input, clock_glitcher, 1
+instance = comp, \~QUARTUS_CREATED_GND~I\, ~QUARTUS_CREATED_GND~I, clock_glitcher, 1

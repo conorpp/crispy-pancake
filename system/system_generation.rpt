@@ -1,0 +1,42 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/pp/apps/altera/system.qsys --block-symbol-file --output-directory=/home/pp/apps/altera/system --family="Cyclone V" --part=5CGXFC7C7F23C8
+Progress: Loading altera/system.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 15.0]
+Progress: Parameterizing module clk_0
+Progress: Adding pll_0 [altera_pll 15.0]
+Progress: Parameterizing module pll_0
+Progress: Adding pll_reconfig_0 [altera_pll_reconfig 15.0]
+Progress: Parameterizing module pll_reconfig_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: system.pll_0: The legal reference clock frequency is 50.0 MHz..650.0 MHz
+Info: system.pll_0: Able to implement PLL with user settings
+Info: ip-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/pp/apps/altera/system.qsys --synthesis=VERILOG --output-directory=/home/pp/apps/altera/system/synthesis --family="Cyclone V" --part=5CGXFC7C7F23C8
+Progress: Loading altera/system.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 15.0]
+Progress: Parameterizing module clk_0
+Progress: Adding pll_0 [altera_pll 15.0]
+Progress: Parameterizing module pll_0
+Progress: Adding pll_reconfig_0 [altera_pll_reconfig 15.0]
+Progress: Parameterizing module pll_reconfig_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: system.pll_0: The legal reference clock frequency is 50.0 MHz..650.0 MHz
+Info: system.pll_0: Able to implement PLL with user settings
+Info: system: Generating system "system" for QUARTUS_SYNTH
+Info: pll_0: "system" instantiated altera_pll "pll_0"
+Info: pll_reconfig_0: "system" instantiated altera_pll_reconfig "pll_reconfig_0"
+Info: rst_controller: "system" instantiated altera_reset_controller "rst_controller"
+Info: system: Done "system" with 4 modules, 8 files
+Info: ip-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

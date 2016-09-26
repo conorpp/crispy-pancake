@@ -1,0 +1,27 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/pp/apps/altera/system.qsys --block-symbol-file --output-directory=/home/pp/apps/altera/system --family="Cyclone V" --part=5CGXFC7C7F23C8
+Progress: Loading altera/system.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 15.0]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: ip-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/pp/apps/altera/system.qsys --synthesis=VERILOG --output-directory=/home/pp/apps/altera/system/synthesis --family="Cyclone V" --part=5CGXFC7C7F23C8
+Progress: Loading altera/system.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 15.0]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: system: Generating system "system" for QUARTUS_SYNTH
+Info: system: Done "system" with 1 modules, 1 files
+Info: ip-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
