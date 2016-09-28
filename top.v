@@ -1,12 +1,10 @@
-module clock_glitcher(input clk, output glitch);
+module clock_glitcher(input clk, output glitch, output [9:0] LEDR);
 
-wire sysclk;
 wire reset;
 
 assign reset = 0;
 
 
-assign glitch = clk;
 
 
 /*
@@ -42,7 +40,7 @@ module system (
 endmodule
 
 */
-
+wire newclk;
 wire[63:0] pll_bus_to;
 wire[63:0] pll_bus_from;
 
@@ -53,13 +51,14 @@ wire [5:0] ava_saddr;
 system
 (
 .clk_clk(clk),
-.reset_reset_n(~reset),
+.reset_reset_n(reset),
 
-.pll_reconfig_0_reconfig_to_pll_reconfig_to_pll(pll_bus_to),
-.pll_reconfig_0_reconfig_from_pll_reconfig_from_pll(pll_bus_from),
-.pll_0_reconfig_to_pll_reconfig_to_pll(pll_bus_to),
-.pll_0_reconfig_from_pll_reconfig_from_pll(pll_bus_from),
-.pll_0_locked_export(),
+.pll_reconfig_0_reconfig_to_pll_reconfig_to_pll(),
+.pll_reconfig_0_reconfig_from_pll_reconfig_from_pll(),
+.pll_0_reconfig_to_pll_reconfig_to_pll(),
+.pll_0_reconfig_from_pll_reconfig_from_pll(),
+//.pll_0_locked_export(),
+.pll_0_outclk0_clk(newclk),
 
 .pll_reconfig_0_mgmt_avalon_slave_waitrequest(),
 .pll_reconfig_0_mgmt_avalon_slave_read(ava_sread),
@@ -67,12 +66,37 @@ system
 .pll_reconfig_0_mgmt_avalon_slave_readdata(ava_srddata),
 .pll_reconfig_0_mgmt_avalon_slave_address(ava_saddr),
 .pll_reconfig_0_mgmt_avalon_slave_writedata(ava_swrdata),
+
+	.pll_0_phase_en_phase_en(1'b1),
+	.pll_0_updn_updn(1'b1),
+	.pll_0_cntsel_cntsel(0),
+	.pll_0_phase_done_phase_done()
 );
 
 assign ava_sread = 0;
 assign ava_swrite = 0;
 assign ava_swrdata = 0;
 assign ava_saddr = 0;
+
+
+reg[31:0] count_reg;
+reg[31:0] count_new;
+
+always@(posedge clk)
+begin
+    count_reg <= count_reg + 1;
+end
+
+always@(posedge newclk)
+begin
+    count_new <= count_new + 1;
+end
+
+assign LEDR[8:1] = 8'h00;
+
+assign LEDR[9] = count_reg[25];
+
+assign LEDR[0] = count_new[25];
 
 
 endmodule

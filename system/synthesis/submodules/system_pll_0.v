@@ -13,6 +13,18 @@ module  system_pll_0(
 	// interface 'locked'
 	output wire locked,
 
+	// interface 'phase_en'
+	input wire phase_en,
+
+	// interface 'updn'
+	input wire updn,
+
+	// interface 'cntsel'
+	input wire [4:0] cntsel,
+
+	// interface 'phase_done'
+	output wire phase_done,
+
 	// interface 'reconfig_to_pll'
 	input wire [63:0] reconfig_to_pll,
 
@@ -22,13 +34,13 @@ module  system_pll_0(
 
 	altera_pll #(
 		.fractional_vco_multiplier("true"),
-		.reference_clock_frequency("100.0 MHz"),
+		.reference_clock_frequency("50.0 MHz"),
 		.pll_fractional_cout(32),
 		.pll_dsm_out_sel("1st_order"),
 		.operation_mode("direct"),
 		.number_of_clocks(1),
-		.output_clock_frequency0("100.000000 MHz"),
-		.phase_shift0("0 ps"),
+		.output_clock_frequency0("50.000000 MHz"),
+		.phase_shift0("15000 ps"),
 		.duty_cycle0(50),
 		.output_clock_frequency1("0 MHz"),
 		.phase_shift1("0 ps"),
@@ -82,18 +94,18 @@ module  system_pll_0(
 		.phase_shift17("0 ps"),
 		.duty_cycle17(50),
 		.pll_type("Cyclone V"),
-		.pll_subtype("Reconfigurable"),
+		.pll_subtype("ReconfDPS"),
 		.m_cnt_hi_div(4),
 		.m_cnt_lo_div(4),
-		.n_cnt_hi_div(1),
-		.n_cnt_lo_div(1),
+		.n_cnt_hi_div(256),
+		.n_cnt_lo_div(256),
 		.m_cnt_bypass_en("false"),
-		.n_cnt_bypass_en("false"),
+		.n_cnt_bypass_en("true"),
 		.m_cnt_odd_div_duty_en("false"),
 		.n_cnt_odd_div_duty_en("false"),
-		.c_cnt_hi_div0(2),
-		.c_cnt_lo_div0(2),
-		.c_cnt_prst0(1),
+		.c_cnt_hi_div0(4),
+		.c_cnt_lo_div0(4),
+		.c_cnt_prst0(7),
 		.c_cnt_ph_mux_prst0(0),
 		.c_cnt_in_src0("ph_mux_clk"),
 		.c_cnt_bypass_en0("false"),
@@ -229,12 +241,16 @@ module  system_pll_0(
 		.pll_slf_rst("false")
 	) altera_pll_i (
 		.rst	(rst),
-		.outclk	({outclk_0}),
 		.locked	(locked),
-		.reconfig_to_pll	(reconfig_to_pll),
 		.fboutclk	( ),
 		.fbclk	(1'b0),
+		.phase_done	(phase_done),
+		.reconfig_to_pll	(reconfig_to_pll),
 		.refclk	(refclk),
+		.cntsel	(cntsel),
+		.outclk	({outclk_0}),
+		.phase_en	(phase_en),
+		.updn	(updn),
 		.reconfig_from_pll	(reconfig_from_pll)
 	);
 endmodule

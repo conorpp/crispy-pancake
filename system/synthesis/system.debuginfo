@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="system" kind="system" version="15.0" fabric="QSYS">
  <!-- Format version 15.0 145 (Future versions may contain additional information.) -->
- <!-- 2016.09.26.00:59:34 -->
+ <!-- 2016.09.28.02:58:01 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -13,7 +13,7 @@
  </parameter>
  <parameter name="device">
   <type>java.lang.String</type>
-  <value>5CGXFC7C7F23C8</value>
+  <value>5CSEMA5F31C6</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -29,7 +29,7 @@
  </parameter>
  <parameter name="deviceSpeedGrade">
   <type>java.lang.String</type>
-  <value>8_H7</value>
+  <value>6</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -53,7 +53,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1474865970</value>
+  <value>1475045881</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -101,7 +101,7 @@
  </parameter>
  <parameter name="projectName">
   <type>java.lang.String</type>
-  <value></value>
+  <value>clock_glitcher.qpf</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -493,7 +493,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="device">
    <type>java.lang.String</type>
-   <value>5CGXFC7C7F23C8</value>
+   <value>5CSEMA5F31C6</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -502,7 +502,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_device_speed_grade">
    <type>java.lang.String</type>
-   <value>1</value>
+   <value>8</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -526,7 +526,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_reference_clock_frequency">
    <type>double</type>
-   <value>100.0</value>
+   <value>50.0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -534,7 +534,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="reference_clock_frequency">
    <type>java.lang.String</type>
-   <value>100.0 MHz</value>
+   <value>50.0 MHz</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -606,7 +606,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_use_locked">
    <type>boolean</type>
-   <value>true</value>
+   <value>false</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -678,7 +678,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_output_clock_frequency0">
    <type>double</type>
-   <value>100.0</value>
+   <value>50.0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -726,7 +726,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_ps_units0">
    <type>java.lang.String</type>
-   <value>ps</value>
+   <value>degrees</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -734,18 +734,18 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_phase_shift0">
    <type>int</type>
-   <value>0</value>
+   <value>5000</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>true</visible>
+   <visible>false</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_phase_shift_deg0">
    <type>double</type>
-   <value>0.0</value>
+   <value>270.0</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="gui_actual_phase_shift0">
@@ -2398,7 +2398,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="output_clock_frequency0">
    <type>java.lang.String</type>
-   <value>100.000000 MHz</value>
+   <value>50.000000 MHz</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2406,7 +2406,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="phase_shift0">
    <type>java.lang.String</type>
-   <value>0 ps</value>
+   <value>15000 ps</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2854,7 +2854,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_en_dps_ports">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -2894,7 +2894,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="pll_subtype">
    <type>java.lang.String</type>
-   <value>Reconfigurable</value>
+   <value>ReconfDPS</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2918,7 +2918,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="n_cnt_hi_div">
    <type>int</type>
-   <value>1</value>
+   <value>256</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2926,7 +2926,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="n_cnt_lo_div">
    <type>int</type>
-   <value>1</value>
+   <value>256</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2942,7 +2942,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="n_cnt_bypass_en">
    <type>java.lang.String</type>
-   <value>false</value>
+   <value>true</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2966,7 +2966,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_hi_div0">
    <type>int</type>
-   <value>2</value>
+   <value>4</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2974,7 +2974,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_lo_div0">
    <type>int</type>
-   <value>2</value>
+   <value>4</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -2982,7 +2982,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="c_cnt_prst0">
    <type>int</type>
-   <value>1</value>
+   <value>7</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -4062,7 +4062,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="gui_parameter_values">
    <type>[Ljava.lang.String;</type>
-   <value>4,4,1,1,false,false,false,false,2,2,1,0,ph_mux_clk,false,false,2,20,4000,400.0 MHz,1,none,glb,m_cnt,ph_mux_clk,false</value>
+   <value>4,4,256,256,false,true,false,false,4,4,7,0,ph_mux_clk,false,false,2,20,4000,400.0 MHz,1,none,glb,m_cnt,ph_mux_clk,false</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -4364,7 +4364,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="clockRate">
     <type>long</type>
-    <value>100000000</value>
+    <value>50000000</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -4419,7 +4419,142 @@ parameters are a RESULT of the module parameters. -->
     <role>clk</role>
    </port>
   </interface>
-  <interface name="locked" kind="conduit_end" version="15.0">
+  <interface name="phase_en" kind="conduit_end" version="15.0">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="associatedClock">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="associatedReset">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>conduit</type>
+   <isStart>false</isStart>
+   <port>
+    <name>phase_en</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>phase_en</role>
+   </port>
+  </interface>
+  <interface name="updn" kind="conduit_end" version="15.0">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="associatedClock">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="associatedReset">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>conduit</type>
+   <isStart>false</isStart>
+   <port>
+    <name>updn</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>updn</role>
+   </port>
+  </interface>
+  <interface name="cntsel" kind="conduit_end" version="15.0">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="associatedClock">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="associatedReset">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>conduit</type>
+   <isStart>false</isStart>
+   <port>
+    <name>cntsel</name>
+    <direction>Input</direction>
+    <width>5</width>
+    <role>cntsel</role>
+   </port>
+  </interface>
+  <interface name="phase_done" kind="conduit_end" version="15.0">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -4462,10 +4597,10 @@ parameters are a RESULT of the module parameters. -->
    <type>conduit</type>
    <isStart>false</isStart>
    <port>
-    <name>locked</name>
+    <name>phase_done</name>
     <direction>Output</direction>
     <width>1</width>
-    <role>export</role>
+    <role>phase_done</role>
    </port>
   </interface>
   <interface name="reconfig_to_pll" kind="conduit_end" version="15.0">
@@ -5817,7 +5952,7 @@ parameters are a RESULT of the module parameters. -->
   <version>15.0</version>
  </plugin>
  <plugin>
-  <instanceCount>5</instanceCount>
+  <instanceCount>8</instanceCount>
   <name>conduit_end</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -5889,5 +6024,5 @@ parameters are a RESULT of the module parameters. -->
   <version>15.0</version>
  </plugin>
  <reportVersion>15.0 145</reportVersion>
- <uniqueIdentifier>56847AFE97990000015764DCBD5C</uniqueIdentifier>
+ <uniqueIdentifier>56847AFE9799000001576F95F597</uniqueIdentifier>
 </EnsembleReport>

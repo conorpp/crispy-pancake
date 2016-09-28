@@ -1,0 +1,18 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst system.pll_reconfig_0 -pg 1 -lvl 2 -y 30
+preplace inst system.pll_0 -pg 1 -lvl 2 -y 150
+preplace inst system -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst system.clk_0 -pg 1 -lvl 1 -y 210
+preplace netloc FAN_OUT<net_container>system</net_container>(MASTER)clk_0.clk_reset,(SLAVE)pll_reconfig_0.mgmt_reset,(SLAVE)pll_0.reset) 1 1 1 430
+preplace netloc FAN_OUT<net_container>system</net_container>(MASTER)clk_0.clk,(SLAVE)pll_0.refclk,(SLAVE)pll_reconfig_0.mgmt_clk) 1 1 1 410
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.pll_0_reconfig_from_pll,(SLAVE)pll_0.reconfig_from_pll) 1 0 2 NJ 180 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.pll_0_locked,(SLAVE)pll_0.locked) 1 0 2 NJ 160 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_reconfig_0.reconfig_from_pll,(SLAVE)system.pll_reconfig_0_reconfig_from_pll) 1 0 2 NJ 100 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)clk_0.clk_in,(SLAVE)system.clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.pll_reconfig_0_mgmt_avalon_slave,(SLAVE)pll_reconfig_0.mgmt_avalon_slave) 1 0 2 NJ 40 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)system.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_reconfig_0.reconfig_to_pll,(SLAVE)system.pll_reconfig_0_reconfig_to_pll) 1 0 2 NJ 120 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_0.reconfig_to_pll,(SLAVE)system.pll_0_reconfig_to_pll) 1 0 2 NJ 200 NJ
+levelinfo -pg 1 0 200 650
+levelinfo -hier system 210 240 460 640

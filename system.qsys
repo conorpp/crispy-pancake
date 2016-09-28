@@ -6,11 +6,16 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element $${FILENAME}
    {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
    }
    element clk_0
    {
@@ -39,9 +44,9 @@
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
- <parameter name="device" value="5CGXFC7C7F23C8" />
+ <parameter name="device" value="5CSEMA5F31C6" />
  <parameter name="deviceFamily" value="Cyclone V" />
- <parameter name="deviceSpeedGrade" value="8_H7" />
+ <parameter name="deviceSpeedGrade" value="6" />
  <parameter name="fabricMode" value="QSYS" />
  <parameter name="generateLegacySim" value="false" />
  <parameter name="generationId" value="0" />
@@ -50,7 +55,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="clock_glitcher.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -58,7 +63,23 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
- <interface name="pll_0_locked" internal="pll_0.locked" type="conduit" dir="end" />
+ <interface name="pll_0_cntsel" internal="pll_0.cntsel" type="conduit" dir="end" />
+ <interface name="pll_0_locked" internal="pll_0.locked" />
+ <interface
+   name="pll_0_outclk0"
+   internal="pll_0.outclk0"
+   type="clock"
+   dir="start" />
+ <interface
+   name="pll_0_phase_done"
+   internal="pll_0.phase_done"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pll_0_phase_en"
+   internal="pll_0.phase_en"
+   type="conduit"
+   dir="end" />
  <interface
    name="pll_0_reconfig_from_pll"
    internal="pll_0.reconfig_from_pll"
@@ -69,6 +90,7 @@
    internal="pll_0.reconfig_to_pll"
    type="conduit"
    dir="end" />
+ <interface name="pll_0_updn" internal="pll_0.updn" type="conduit" dir="end" />
  <interface
    name="pll_reconfig_0_mgmt_avalon_slave"
    internal="pll_reconfig_0.mgmt_avalon_slave"
@@ -94,7 +116,7 @@
  <module name="pll_0" kind="altera_pll" version="15.0" enabled="1">
   <parameter name="debug_print_output" value="false" />
   <parameter name="debug_use_rbc_taf_method" value="false" />
-  <parameter name="device" value="5CGXFC7C7F23C8" />
+  <parameter name="device" value="5CSEMA5F31C6" />
   <parameter name="device_family" value="Cyclone V" />
   <parameter name="gui_active_clk" value="false" />
   <parameter name="gui_actual_output_clock_frequency0" value="0 MHz" />
@@ -154,7 +176,7 @@
   <parameter name="gui_cascade_outclk_index" value="0" />
   <parameter name="gui_channel_spacing" value="0.0" />
   <parameter name="gui_clk_bad" value="false" />
-  <parameter name="gui_device_speed_grade" value="1" />
+  <parameter name="gui_device_speed_grade" value="8" />
   <parameter name="gui_divide_factor_c0" value="1" />
   <parameter name="gui_divide_factor_c1" value="1" />
   <parameter name="gui_divide_factor_c10" value="1" />
@@ -197,7 +219,7 @@
   <parameter name="gui_duty_cycle8" value="50" />
   <parameter name="gui_duty_cycle9" value="50" />
   <parameter name="gui_en_adv_params" value="false" />
-  <parameter name="gui_en_dps_ports" value="false" />
+  <parameter name="gui_en_dps_ports" value="true" />
   <parameter name="gui_en_phout_ports" value="false" />
   <parameter name="gui_en_reconf" value="true" />
   <parameter name="gui_enable_cascade_in" value="false" />
@@ -210,7 +232,7 @@
   <parameter name="gui_multiply_factor" value="1" />
   <parameter name="gui_number_of_clocks" value="1" />
   <parameter name="gui_operation_mode" value="direct" />
-  <parameter name="gui_output_clock_frequency0" value="100.0" />
+  <parameter name="gui_output_clock_frequency0" value="50.0" />
   <parameter name="gui_output_clock_frequency1" value="100.0" />
   <parameter name="gui_output_clock_frequency10" value="100.0" />
   <parameter name="gui_output_clock_frequency11" value="100.0" />
@@ -228,7 +250,7 @@
   <parameter name="gui_output_clock_frequency7" value="100.0" />
   <parameter name="gui_output_clock_frequency8" value="100.0" />
   <parameter name="gui_output_clock_frequency9" value="100.0" />
-  <parameter name="gui_phase_shift0" value="0" />
+  <parameter name="gui_phase_shift0" value="5000" />
   <parameter name="gui_phase_shift1" value="0" />
   <parameter name="gui_phase_shift10" value="0" />
   <parameter name="gui_phase_shift11" value="0" />
@@ -246,7 +268,7 @@
   <parameter name="gui_phase_shift7" value="0" />
   <parameter name="gui_phase_shift8" value="0" />
   <parameter name="gui_phase_shift9" value="0" />
-  <parameter name="gui_phase_shift_deg0" value="0.0" />
+  <parameter name="gui_phase_shift_deg0" value="270.0" />
   <parameter name="gui_phase_shift_deg1" value="0.0" />
   <parameter name="gui_phase_shift_deg10" value="0.0" />
   <parameter name="gui_phase_shift_deg11" value="0.0" />
@@ -269,7 +291,7 @@
   <parameter name="gui_pll_bandwidth_preset" value="Auto" />
   <parameter name="gui_pll_cascading_mode">Create an adjpllin signal to connect with an upstream PLL</parameter>
   <parameter name="gui_pll_mode" value="Fractional-N PLL" />
-  <parameter name="gui_ps_units0" value="ps" />
+  <parameter name="gui_ps_units0" value="degrees" />
   <parameter name="gui_ps_units1" value="ps" />
   <parameter name="gui_ps_units10" value="ps" />
   <parameter name="gui_ps_units11" value="ps" />
@@ -289,10 +311,10 @@
   <parameter name="gui_ps_units9" value="ps" />
   <parameter name="gui_refclk1_frequency" value="100.0" />
   <parameter name="gui_refclk_switch" value="false" />
-  <parameter name="gui_reference_clock_frequency" value="100.0" />
+  <parameter name="gui_reference_clock_frequency" value="50.0" />
   <parameter name="gui_switchover_delay" value="0" />
   <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
-  <parameter name="gui_use_locked" value="true" />
+  <parameter name="gui_use_locked" value="false" />
  </module>
  <module
    name="pll_reconfig_0"

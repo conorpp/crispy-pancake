@@ -5,9 +5,13 @@
 `timescale 1 ps / 1 ps
 module system (
 		input  wire        clk_clk,                                            //                              clk.clk
-		output wire        pll_0_locked_export,                                //                     pll_0_locked.export
+		input  wire [4:0]  pll_0_cntsel_cntsel,                                //                     pll_0_cntsel.cntsel
+		output wire        pll_0_outclk0_clk,                                  //                    pll_0_outclk0.clk
+		output wire        pll_0_phase_done_phase_done,                        //                 pll_0_phase_done.phase_done
+		input  wire        pll_0_phase_en_phase_en,                            //                   pll_0_phase_en.phase_en
 		output wire [63:0] pll_0_reconfig_from_pll_reconfig_from_pll,          //          pll_0_reconfig_from_pll.reconfig_from_pll
 		input  wire [63:0] pll_0_reconfig_to_pll_reconfig_to_pll,              //            pll_0_reconfig_to_pll.reconfig_to_pll
+		input  wire        pll_0_updn_updn,                                    //                       pll_0_updn.updn
 		output wire        pll_reconfig_0_mgmt_avalon_slave_waitrequest,       // pll_reconfig_0_mgmt_avalon_slave.waitrequest
 		input  wire        pll_reconfig_0_mgmt_avalon_slave_read,              //                                 .read
 		input  wire        pll_reconfig_0_mgmt_avalon_slave_write,             //                                 .write
@@ -24,10 +28,14 @@ module system (
 	system_pll_0 pll_0 (
 		.refclk            (clk_clk),                                   //            refclk.clk
 		.rst               (~reset_reset_n),                            //             reset.reset
-		.outclk_0          (),                                          //           outclk0.clk
-		.locked            (pll_0_locked_export),                       //            locked.export
+		.outclk_0          (pll_0_outclk0_clk),                         //           outclk0.clk
+		.phase_en          (pll_0_phase_en_phase_en),                   //          phase_en.phase_en
+		.updn              (pll_0_updn_updn),                           //              updn.updn
+		.cntsel            (pll_0_cntsel_cntsel),                       //            cntsel.cntsel
+		.phase_done        (pll_0_phase_done_phase_done),               //        phase_done.phase_done
 		.reconfig_to_pll   (pll_0_reconfig_to_pll_reconfig_to_pll),     //   reconfig_to_pll.reconfig_to_pll
-		.reconfig_from_pll (pll_0_reconfig_from_pll_reconfig_from_pll)  // reconfig_from_pll.reconfig_from_pll
+		.reconfig_from_pll (pll_0_reconfig_from_pll_reconfig_from_pll), // reconfig_from_pll.reconfig_from_pll
+		.locked            ()                                           //       (terminated)
 	);
 
 	altera_pll_reconfig_top #(

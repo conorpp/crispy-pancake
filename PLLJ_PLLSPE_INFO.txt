@@ -1,0 +1,10 @@
+PLL_Name	system:comb_4|system_pll_0:pll_0|altera_pll:altera_pll_i|altera_cyclonev_pll:cyclonev_pll|altera_cyclonev_pll_base:fpll_0|fpll
+PLLJITTER	95
+PLLSPEmax	100
+PLLSPEmin	-100
+
+PLL_Name	system:comb_4|system_pll_0:pll_0|altera_pll:altera_pll_i|altera_cyclonev_pll:cyclonev_pll|counter[0].output_counter
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
