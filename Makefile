@@ -7,7 +7,7 @@ all: $(outputdir)/$(project).sof
 	nios2-configure-sof $(outputdir)/$(project).sof -d 2
 
 
-$(outputdir)/$(project).map.rpt:  $(verilog)
+$(outputdir)/$(project).map.rpt:  $(verilog) $(project).qsf
 		quartus_map $(project)
 
 $(outputdir)/$(project).fit.rpt: $(outputdir)/$(project).map.rpt
@@ -18,3 +18,7 @@ $(outputdir)/$(project).sof: $(outputdir)/$(project).fit.rpt
 
 clean:
 	rm -f $(outputdir)/*
+
+reset:
+	sudo killall -9 jtagd
+	sudo /home/wintermute/altera/16.0/quartus/bin/jtagd

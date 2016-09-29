@@ -1,12 +1,14 @@
 Info: Starting: Create block symbol file (.bsf)
-Info: qsys-generate /home/pp/apps/crispy-pancake/system.qsys --block-symbol-file --output-directory=/home/pp/apps/crispy-pancake/system --family="Cyclone V" --part=5CSEMA5F31C6
+Info: qsys-generate /home/wintermute/apps/crispy-pancake/system.qsys --block-symbol-file --output-directory=/home/wintermute/apps/crispy-pancake/system --family="Cyclone V" --part=5CSEMA5F31C6
 Progress: Loading crispy-pancake/system.qsys
 Progress: Reading input file
-Progress: Adding clk_0 [clock_source 15.0]
+Progress: Adding clk_0 [clock_source 16.0]
 Progress: Parameterizing module clk_0
-Progress: Adding pll_0 [altera_pll 15.0]
+Progress: Adding nios2_gen2_0 [altera_nios2_gen2 16.0]
+Progress: Parameterizing module nios2_gen2_0
+Progress: Adding pll_0 [altera_pll 16.0]
 Progress: Parameterizing module pll_0
-Progress: Adding pll_reconfig_0 [altera_pll_reconfig 15.0]
+Progress: Adding pll_reconfig_0 [altera_pll_reconfig 16.0]
 Progress: Parameterizing module pll_reconfig_0
 Progress: Building connections
 Progress: Parameterizing connections
@@ -14,19 +16,21 @@ Progress: Validating
 Progress: Done reading input file
 Info: system.pll_0: The legal reference clock frequency is 50.0 MHz..800.0 MHz
 Info: system.pll_0: Able to implement PLL with user settings
-Warning: system.pll_0: Altera PLL does not recommend simultaneously enabling Dynamic Reconfiguration and access to Dynamic Phase Shift ports. Please refer to AN661 for how to perform dynamic phase shifts using PLL Dynamic Reconfiguration.
-Info: ip-generate succeeded.
+Warning: system.: You have exported the interface pll_reconfig_0.mgmt_avalon_slave but not its associated reset interface.  Export the driver(s) of pll_reconfig_0.mgmt_reset
+Info: qsys-generate succeeded.
 Info: Finished: Create block symbol file (.bsf)
 Info: 
 Info: Starting: Create HDL design files for synthesis
-Info: qsys-generate /home/pp/apps/crispy-pancake/system.qsys --synthesis=VERILOG --output-directory=/home/pp/apps/crispy-pancake/system/synthesis --family="Cyclone V" --part=5CSEMA5F31C6
+Info: qsys-generate /home/wintermute/apps/crispy-pancake/system.qsys --synthesis=VERILOG --output-directory=/home/wintermute/apps/crispy-pancake/system/synthesis --family="Cyclone V" --part=5CSEMA5F31C6
 Progress: Loading crispy-pancake/system.qsys
 Progress: Reading input file
-Progress: Adding clk_0 [clock_source 15.0]
+Progress: Adding clk_0 [clock_source 16.0]
 Progress: Parameterizing module clk_0
-Progress: Adding pll_0 [altera_pll 15.0]
+Progress: Adding nios2_gen2_0 [altera_nios2_gen2 16.0]
+Progress: Parameterizing module nios2_gen2_0
+Progress: Adding pll_0 [altera_pll 16.0]
 Progress: Parameterizing module pll_0
-Progress: Adding pll_reconfig_0 [altera_pll_reconfig 15.0]
+Progress: Adding pll_reconfig_0 [altera_pll_reconfig 16.0]
 Progress: Parameterizing module pll_reconfig_0
 Progress: Building connections
 Progress: Parameterizing connections
@@ -34,11 +38,43 @@ Progress: Validating
 Progress: Done reading input file
 Info: system.pll_0: The legal reference clock frequency is 50.0 MHz..800.0 MHz
 Info: system.pll_0: Able to implement PLL with user settings
-Warning: system.pll_0: Altera PLL does not recommend simultaneously enabling Dynamic Reconfiguration and access to Dynamic Phase Shift ports. Please refer to AN661 for how to perform dynamic phase shifts using PLL Dynamic Reconfiguration.
+Warning: system.: You have exported the interface pll_reconfig_0.mgmt_avalon_slave but not its associated reset interface.  Export the driver(s) of pll_reconfig_0.mgmt_reset
 Info: system: Generating system "system" for QUARTUS_SYNTH
+Info: nios2_gen2_0: "system" instantiated altera_nios2_gen2 "nios2_gen2_0"
 Info: pll_0: "system" instantiated altera_pll "pll_0"
+Warning: quartus_synth: A Duplicate file was overwritten with path: altera_pll_reconfig_top.v
 Info: pll_reconfig_0: "system" instantiated altera_pll_reconfig "pll_reconfig_0"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_0: "system" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: irq_mapper: "system" instantiated altera_irq_mapper "irq_mapper"
 Info: rst_controller: "system" instantiated altera_reset_controller "rst_controller"
-Info: system: Done "system" with 4 modules, 8 files
-Info: ip-generate succeeded.
+Info: cpu: Starting RTL generation for module 'system_nios2_gen2_0_cpu'
+Info: cpu:   Generation command is [exec /home/wintermute/altera/16.0/quartus/linux64//eperlcmd -I /home/wintermute/altera/16.0/quartus/linux64//perl/lib -I /home/wintermute/altera/16.0/quartus/sopc_builder/bin/europa -I /home/wintermute/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/wintermute/altera/16.0/quartus/sopc_builder/bin -I /home/wintermute/altera/16.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/cpu_lib -I /home/wintermute/altera/16.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/nios_lib -I /home/wintermute/altera/16.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -I /home/wintermute/altera/16.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -- /home/wintermute/altera/16.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/generate_rtl.epl --name=system_nios2_gen2_0_cpu --dir=/tmp/alt7072_7632477768932873507.dir/0031_cpu_gen/ --quartus_bindir=/home/wintermute/altera/16.0/quartus/linux64/ --verilog --config=/tmp/alt7072_7632477768932873507.dir/0031_cpu_gen//system_nios2_gen2_0_cpu_processor_configuration.pl  --do_build_sim=0  ]
+Info: cpu: # 2016.09.28 21:25:58 (*) Starting Nios II generation
+Info: cpu: # 2016.09.28 21:25:58 (*)   Checking for plaintext license.
+Info: cpu: # 2016.09.28 21:25:59 (*)   Plaintext license not found.
+Info: cpu: # 2016.09.28 21:25:59 (*)   No license required to generate encrypted Nios II/e.
+Info: cpu: # 2016.09.28 21:25:59 (*)   Elaborating CPU configuration settings
+Info: cpu: # 2016.09.28 21:25:59 (*)   Creating all objects for CPU
+Info: cpu: # 2016.09.28 21:26:00 (*)   Generating RTL from CPU objects
+Info: cpu: # 2016.09.28 21:26:00 (*)   Creating plain-text RTL
+Info: cpu: # 2016.09.28 21:26:01 (*) Done Nios II generation
+Info: cpu: Done RTL generation for module 'system_nios2_gen2_0_cpu'
+Info: cpu: "nios2_gen2_0" instantiated altera_nios2_gen2_unit "cpu"
+Info: nios2_gen2_0_data_master_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "nios2_gen2_0_data_master_translator"
+Info: nios2_gen2_0_debug_mem_slave_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "nios2_gen2_0_debug_mem_slave_translator"
+Info: nios2_gen2_0_data_master_agent: "mm_interconnect_0" instantiated altera_merlin_master_agent "nios2_gen2_0_data_master_agent"
+Info: nios2_gen2_0_debug_mem_slave_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "nios2_gen2_0_debug_mem_slave_agent"
+Info: nios2_gen2_0_debug_mem_slave_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "nios2_gen2_0_debug_mem_slave_agent_rsp_fifo"
+Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
+Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/wintermute/apps/crispy-pancake/system/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: system: Done "system" with 21 modules, 35 files
+Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis
