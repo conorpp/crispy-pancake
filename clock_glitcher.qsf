@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY clock_glitcher
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:24:44  SEPTEMBER 25, 2016"
-set_global_assignment -name LAST_QUARTUS_VERSION 15.0.0
+set_global_assignment -name LAST_QUARTUS_VERSION 16.0.0
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
@@ -176,3 +176,16 @@ set_location_assignment PIN_AG18 -to GPIO_0[34]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[34]
 set_location_assignment PIN_AJ21 -to GPIO_0[35]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[35]
+
+
+# UART
+#
+#set_location_assignment PIN_B25 -to uart_rx
+#set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to uart_rx
+#set_location_assignment PIN_C25 -to uart_tx
+#set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to uart_tx
+
+
+
+
+

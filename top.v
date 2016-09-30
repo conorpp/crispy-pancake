@@ -2,6 +2,7 @@ module clock_glitcher(input clk, output glitch, output [9:0] LEDR, inout [35:0] 
 
 wire reset;
 wire newclk, glitchclk;
+wire uart_tx, uart_rx;
 
 assign reset = KEY[0];
 
@@ -35,6 +36,12 @@ assign ava_saddr = 0;
 system
 (
 .clk_clk(clk),
+.reset_reset_n(reset),
+.uart_0_rxd(uart_rx),
+.uart_0_txd(uart_tx),
+.hps_io_hps_io_uart0_inst_RX(uart_rx),
+.hps_io_hps_io_uart0_inst_TX(uart_tx),
+
 
 .pll_reconfig_0_reconfig_to_pll_reconfig_to_pll(),
 .pll_reconfig_0_reconfig_from_pll_reconfig_from_pll(),

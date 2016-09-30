@@ -43,9 +43,9 @@
 //   ARBITRATION_SHARES:  1 1
 //   ARBITRATION_SCHEME   "round-robin"
 //   PIPELINE_ARB:        1
-//   PKT_TRANS_LOCK:      52 (arbitration locking enabled)
-//   ST_DATA_W:           84
-//   ST_CHANNEL_W:        2
+//   PKT_TRANS_LOCK:      57 (arbitration locking enabled)
+//   ST_DATA_W:           91
+//   ST_CHANNEL_W:        4
 // ------------------------------------------
 
 module system_mm_interconnect_0_cmd_mux
@@ -54,15 +54,15 @@ module system_mm_interconnect_0_cmd_mux
     // Sinks
     // ----------------------
     input                       sink0_valid,
-    input [84-1   : 0]  sink0_data,
-    input [2-1: 0]  sink0_channel,
+    input [91-1   : 0]  sink0_data,
+    input [4-1: 0]  sink0_channel,
     input                       sink0_startofpacket,
     input                       sink0_endofpacket,
     output                      sink0_ready,
 
     input                       sink1_valid,
-    input [84-1   : 0]  sink1_data,
-    input [2-1: 0]  sink1_channel,
+    input [91-1   : 0]  sink1_data,
+    input [4-1: 0]  sink1_channel,
     input                       sink1_startofpacket,
     input                       sink1_endofpacket,
     output                      sink1_ready,
@@ -72,8 +72,8 @@ module system_mm_interconnect_0_cmd_mux
     // Source
     // ----------------------
     output                      src_valid,
-    output [84-1    : 0] src_data,
-    output [2-1 : 0] src_channel,
+    output [91-1    : 0] src_data,
+    output [4-1 : 0] src_channel,
     output                      src_startofpacket,
     output                      src_endofpacket,
     input                       src_ready,
@@ -84,13 +84,13 @@ module system_mm_interconnect_0_cmd_mux
     input clk,
     input reset
 );
-    localparam PAYLOAD_W        = 84 + 2 + 2;
+    localparam PAYLOAD_W        = 91 + 4 + 2;
     localparam NUM_INPUTS       = 2;
     localparam SHARE_COUNTER_W  = 1;
     localparam PIPELINE_ARB     = 1;
-    localparam ST_DATA_W        = 84;
-    localparam ST_CHANNEL_W     = 2;
-    localparam PKT_TRANS_LOCK   = 52;
+    localparam ST_DATA_W        = 91;
+    localparam ST_CHANNEL_W     = 4;
+    localparam PKT_TRANS_LOCK   = 57;
 
     // ------------------------------------------
     // Signals
@@ -122,8 +122,8 @@ module system_mm_interconnect_0_cmd_mux
     // ------------------------------------------
     reg [NUM_INPUTS - 1 : 0] lock;
     always @* begin
-      lock[0] = sink0_data[52];
-      lock[1] = sink1_data[52];
+      lock[0] = sink0_data[57];
+      lock[1] = sink1_data[57];
     end
     reg [NUM_INPUTS - 1 : 0] locked = '0;
     always @(posedge clk or posedge reset) begin
