@@ -4,6 +4,8 @@ wire reset;
 wire newclk, glitchclk;
 wire uart_tx, uart_rx;
 
+assign GPIO_0[35] = uart_tx;
+assign uart_rx = GPIO_0[34];
 assign reset = KEY[0];
 
 assign LEDR[8:1] = 8'h00;
@@ -39,9 +41,6 @@ system
 .reset_reset_n(reset),
 .uart_0_rxd(uart_rx),
 .uart_0_txd(uart_tx),
-.hps_io_hps_io_uart0_inst_RX(uart_rx),
-.hps_io_hps_io_uart0_inst_TX(uart_tx),
-
 
 .pll_reconfig_0_reconfig_to_pll_reconfig_to_pll(),
 .pll_reconfig_0_reconfig_from_pll_reconfig_from_pll(),
