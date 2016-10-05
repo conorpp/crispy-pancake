@@ -1,23 +1,27 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst system.pll_reconfig_0 -pg 1 -lvl 4 -y 30
+preplace inst system.pll_reconfig_0 -pg 1 -lvl 4 -y 90
 preplace inst system.nios2_gen2_0.cpu -pg 1
 preplace inst system.nios2_gen2_0.clock_bridge -pg 1
-preplace inst system.pll_0 -pg 1 -lvl 4 -y 150
+preplace inst system.timer_0 -pg 1 -lvl 4 -y 310
+preplace inst system.pll_0 -pg 1 -lvl 4 -y 210
 preplace inst system.nios2_gen2_0.reset_bridge -pg 1
-preplace inst system.nios2_gen2_0 -pg 1 -lvl 2 -y 160
+preplace inst system.onchip_memory2_0 -pg 1 -lvl 4 -y 410
+preplace inst system.nios2_gen2_0 -pg 1 -lvl 2 -y 190
+preplace inst system.uart_0 -pg 1 -lvl 4 -y 490
 preplace inst system -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst system.clk_0 -pg 1 -lvl 3 -y 210
-preplace netloc FAN_OUT<net_container>system</net_container>(SLAVE)pll_0.reset,(SLAVE)nios2_gen2_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)pll_reconfig_0.mgmt_reset) 1 1 3 290 380 NJ 200 1130
-preplace netloc FAN_OUT<net_container>system</net_container>(SLAVE)pll_reconfig_0.mgmt_clk,(SLAVE)pll_0.refclk,(MASTER)clk_0.clk,(SLAVE)nios2_gen2_0.clk) 1 1 3 270 360 NJ 180 1150
-preplace netloc EXPORT<net_container>system</net_container>(MASTER)pll_0.outclk0,(MASTER)system.pll_0_outclk0) 1 4 1 N
-preplace netloc POINT_TO_POINT<net_container>system</net_container>(SLAVE)clk_0.clk_in_reset,(MASTER)nios2_gen2_0.debug_reset_request) 1 2 1 870
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.pll_0_reconfig_from_pll,(SLAVE)pll_0.reconfig_from_pll) 1 0 4 NJ 180 NJ 320 NJ 140 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_reconfig_0.reconfig_from_pll,(SLAVE)system.pll_reconfig_0_reconfig_from_pll) 1 0 4 NJ 80 NJ 100 NJ 100 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_reconfig_0.mgmt_avalon_slave,(SLAVE)system.pll_reconfig_0_mgmt_avalon_slave) 1 0 4 NJ 40 NJ 40 NJ 40 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)clk_0.clk_in,(SLAVE)system.clk) 1 0 3 NJ 400 NJ 400 NJ
-preplace netloc FAN_IN<net_container>system</net_container>(MASTER)nios2_gen2_0.data_master,(SLAVE)nios2_gen2_0.debug_mem_slave,(MASTER)nios2_gen2_0.instruction_master) 1 1 2 310 300 810
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.pll_reconfig_0_reconfig_to_pll,(SLAVE)pll_reconfig_0.reconfig_to_pll) 1 0 4 NJ 120 NJ 120 NJ 120 NJ
-preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_0.reconfig_to_pll,(SLAVE)system.pll_0_reconfig_to_pll) 1 0 4 NJ 340 NJ 340 NJ 160 NJ
-levelinfo -pg 1 0 200 1510
-levelinfo -hier system 210 230 570 960 1220 1400
+preplace inst system.clk_0 -pg 1 -lvl 3 -y 270
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.pll_reconfig_0_reconfig_from_pll,(SLAVE)pll_reconfig_0.reconfig_from_pll) 1 0 4 NJ 40 NJ 30 NJ 120 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)uart_0.external_connection,(SLAVE)system.uart_0) 1 0 4 NJ 520 NJ 520 NJ 520 NJ
+preplace netloc EXPORT<net_container>system</net_container>(MASTER)system.pll_0_outclk0,(MASTER)pll_0.outclk0) 1 4 1 N
+preplace netloc INTERCONNECT<net_container>system</net_container>(MASTER)nios2_gen2_0.instruction_master,(SLAVE)onchip_memory2_0.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(MASTER)nios2_gen2_0.data_master,(SLAVE)uart_0.s1,(SLAVE)timer_0.s1,(SLAVE)pll_reconfig_0.mgmt_avalon_slave) 1 1 3 270 130 850 100 1170
+preplace netloc FAN_OUT<net_container>system</net_container>(MASTER)nios2_gen2_0.irq,(SLAVE)timer_0.irq,(SLAVE)uart_0.irq) 1 2 2 870 240 1150
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)system.pll_0_reconfig_from_pll,(SLAVE)pll_0.reconfig_from_pll) 1 0 4 NJ 240 NJ 380 NJ 200 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)clk_0.clk_in,(SLAVE)system.clk) 1 0 3 NJ 460 NJ 460 NJ
+preplace netloc FAN_OUT<net_container>system</net_container>(SLAVE)nios2_gen2_0.clk,(SLAVE)timer_0.clk,(SLAVE)onchip_memory2_0.clk1,(MASTER)clk_0.clk,(SLAVE)uart_0.clk,(SLAVE)pll_0.refclk,(SLAVE)pll_reconfig_0.mgmt_clk) 1 1 3 250 110 NJ 160 1230
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)system.reset) 1 0 3 NJ 330 NJ 330 NJ
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_reconfig_0.reconfig_to_pll,(SLAVE)system.pll_reconfig_0_reconfig_to_pll) 1 0 4 NJ 60 NJ 50 NJ 140 NJ
+preplace netloc FAN_OUT<net_container>system</net_container>(SLAVE)uart_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)pll_0.reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)pll_reconfig_0.mgmt_reset,(SLAVE)timer_0.reset) 1 1 3 290 150 NJ 180 1250
+preplace netloc EXPORT<net_container>system</net_container>(SLAVE)pll_0.reconfig_to_pll,(SLAVE)system.pll_0_reconfig_to_pll) 1 0 4 NJ 400 NJ 400 NJ 260 NJ
+levelinfo -pg 1 0 200 1590
+levelinfo -hier system 210 230 570 980 1300 1480

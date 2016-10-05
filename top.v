@@ -26,10 +26,6 @@ assign GPIO_0[4] = clk ^ newclk;
 wire[63:0] pll_bus_to;
 wire[63:0] pll_bus_from;
 
-wire ava_sread, ava_swrite;
-wire [31:0] ava_srddata, ava_swrdata;
-wire [5:0] ava_saddr;
-
 assign ava_sread = 0;
 assign ava_swrite = 0;
 assign ava_swrdata = 0;
@@ -42,19 +38,12 @@ system
 .uart_0_rxd(uart_rx),
 .uart_0_txd(uart_tx),
 
-.pll_reconfig_0_reconfig_to_pll_reconfig_to_pll(),
-.pll_reconfig_0_reconfig_from_pll_reconfig_from_pll(),
-.pll_0_reconfig_to_pll_reconfig_to_pll(),
-.pll_0_reconfig_from_pll_reconfig_from_pll(),
+.pll_reconfig_0_reconfig_to_pll_reconfig_to_pll(pll_bus_to),
+.pll_reconfig_0_reconfig_from_pll_reconfig_from_pll(pll_bus_from),
+.pll_0_reconfig_to_pll_reconfig_to_pll(pll_bus_to),
+.pll_0_reconfig_from_pll_reconfig_from_pll(pll_bus_from),
 //.pll_0_locked_export(),
 .pll_0_outclk0_clk(newclk),
-
-.pll_reconfig_0_mgmt_avalon_slave_waitrequest(),
-.pll_reconfig_0_mgmt_avalon_slave_read(ava_sread),
-.pll_reconfig_0_mgmt_avalon_slave_write(ava_swrite),
-.pll_reconfig_0_mgmt_avalon_slave_readdata(ava_srddata),
-.pll_reconfig_0_mgmt_avalon_slave_address(ava_saddr),
-.pll_reconfig_0_mgmt_avalon_slave_writedata(ava_swrdata),
 
 	//.pll_0_phase_en_phase_en(1'b1),
 	//.pll_0_updn_updn(1'b1),

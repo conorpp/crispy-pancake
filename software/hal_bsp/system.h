@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'system'
  * SOPC Builder design path: ../../system.sopcinfo
  *
- * Generated: Sun Oct 02 22:33:02 EDT 2016
+ * Generated: Wed Oct 05 18:00:39 EDT 2016
  */
 
 /*
@@ -133,10 +133,12 @@
  *
  */
 
+#define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_AVALON_UART
 #define __ALTERA_NIOS2_GEN2
+#define __ALTERA_PLL_RECONFIG
 
 
 /*
@@ -154,20 +156,20 @@
 #define ALT_NUM_EXTERNAL_INTERRUPT_CONTROLLERS 0
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
-#define ALT_STDERR "/dev/uart_0"
-#define ALT_STDERR_BASE 0x11000
-#define ALT_STDERR_DEV uart_0
-#define ALT_STDERR_IS_UART
+#define ALT_STDERR "/dev/jtag_uart_0"
+#define ALT_STDERR_BASE 0x11140
+#define ALT_STDERR_DEV jtag_uart_0
+#define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
-#define ALT_STDERR_TYPE "altera_avalon_uart"
+#define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/uart_0"
-#define ALT_STDIN_BASE 0x11000
+#define ALT_STDIN_BASE 0x11100
 #define ALT_STDIN_DEV uart_0
 #define ALT_STDIN_IS_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_uart"
 #define ALT_STDOUT "/dev/uart_0"
-#define ALT_STDOUT_BASE 0x11000
+#define ALT_STDOUT_BASE 0x11100
 #define ALT_STDOUT_DEV uart_0
 #define ALT_STDOUT_IS_UART
 #define ALT_STDOUT_PRESENT
@@ -184,6 +186,24 @@
 #define ALT_MAX_FD 32
 #define ALT_SYS_CLK TIMER_0
 #define ALT_TIMESTAMP_CLK TIMER_0
+
+
+/*
+ * jtag_uart_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
+#define JTAG_UART_0_BASE 0x11140
+#define JTAG_UART_0_IRQ 2
+#define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define JTAG_UART_0_NAME "/dev/jtag_uart_0"
+#define JTAG_UART_0_READ_DEPTH 64
+#define JTAG_UART_0_READ_THRESHOLD 8
+#define JTAG_UART_0_SPAN 8
+#define JTAG_UART_0_TYPE "altera_avalon_jtag_uart"
+#define JTAG_UART_0_WRITE_DEPTH 64
+#define JTAG_UART_0_WRITE_THRESHOLD 8
 
 
 /*
@@ -216,13 +236,27 @@
 
 
 /*
+ * pll_reconfig_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_pll_reconfig_0 altera_pll_reconfig
+#define PLL_RECONFIG_0_BASE 0x11000
+#define PLL_RECONFIG_0_IRQ -1
+#define PLL_RECONFIG_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define PLL_RECONFIG_0_NAME "/dev/pll_reconfig_0"
+#define PLL_RECONFIG_0_SPAN 256
+#define PLL_RECONFIG_0_TYPE "altera_pll_reconfig"
+
+
+/*
  * timer_0 configuration
  *
  */
 
 #define ALT_MODULE_CLASS_timer_0 altera_avalon_timer
 #define TIMER_0_ALWAYS_RUN 0
-#define TIMER_0_BASE 0x11020
+#define TIMER_0_BASE 0x11120
 #define TIMER_0_COUNTER_SIZE 32
 #define TIMER_0_FIXED_PERIOD 0
 #define TIMER_0_FREQ 50000000
@@ -247,8 +281,8 @@
  */
 
 #define ALT_MODULE_CLASS_uart_0 altera_avalon_uart
-#define UART_0_BASE 0x11000
-#define UART_0_BAUD 9600
+#define UART_0_BASE 0x11100
+#define UART_0_BAUD 115200
 #define UART_0_DATA_BITS 8
 #define UART_0_FIXED_BAUD 1
 #define UART_0_FREQ 50000000

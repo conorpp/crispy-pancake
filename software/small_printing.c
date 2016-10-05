@@ -29,6 +29,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdint.h>
 
 #include "small_printing.h"
@@ -36,7 +37,7 @@
 // Painfully lightweight printing routines
 void putf(char c)
 {
-    fputc(c,stderr);
+    write(STDERR_FILENO,&c,1);
 }
 
 
