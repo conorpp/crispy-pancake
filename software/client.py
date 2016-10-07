@@ -9,12 +9,11 @@ if __name__ == '__main__':
 
 
 class Opcodes():
-    CG_START_RECONFIG = 0
     CG_WRITE = 1
     CG_READ = 2
     CG_RESET_RECONFIG = 3
 
-class UART2AVA():
+class CG():
     def __init__(self,dev):
         self.ser = serial.Serial(dev,115200)
 
@@ -34,14 +33,17 @@ class UART2AVA():
         if ret is not 0:
             print 'Error: return code ', ret
 
-    def ava_write(self,addr,data):
+    def write(self,addr,data):
         self.send_transaction(Opcodes.CG_WRITE, addr, data)
 
-    def ava_read(self,addr):
+    def read(self,addr):
         self.send_transaction(Opcodes.CG_READ, addr, 0)
         ret = self.ser.read(4)
         ret = struct.unpack('!I', ret)[0]
         print 'read ', hex(ret)
+
+    def pll_reset(self,):
+        self.send_transaction(Opcodes.CG_RESET_RECONFIG, 0, 0)
 
 
 

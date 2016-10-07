@@ -21,4 +21,4 @@ clean:
 
 reset:
 	sudo killall -9 jtagd
-	sudo /home/wintermute/altera/16.0/quartus/bin/jtagd
+	sudo /home/$(shell whoami)/altera/16.0/quartus/bin/jtagd

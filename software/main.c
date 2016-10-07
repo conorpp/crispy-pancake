@@ -8,6 +8,9 @@
 #include "app.h"
 
 #define PLL_RECONFIG_BASE PLL_RECONFIG_0_BASE
+#define PLL_RECONFIG(x)   (*((volatile uint32_t *)(PLL_RECONFIG_BASE + (x<<2))))
+#define PLL_RESET         *((volatile uint8_t *) 0x0)
+
 
 uint32_t ntohl(uint32_t l)
 {
@@ -60,38 +63,45 @@ void handle_transaction()
     s_printx("recv arg1: ",1,a.arg1);
     s_printx("recv arg2: ",1,a.arg2);
 
+    s_prints("here\r\n");
+
     address = a.arg1;
     data = a.arg2;
 
+
+    s_printd("line ",1,__LINE__);
     switch(a.op)
     {
-        case CG_START_RECONFIG:
+        case CG_RESET_RECONFIG:
             s_prints("CG_START_RECONFIG\r\n");
+            // bring PLL to start up
+            PLL_RESET = 1;
+            PLL_RESET = 0;
+            // put in polling mode
+            PLL_RECONFIG(0) = 1;
             break;
         case CG_WRITE:
-            s_printx("writing to addr ",2,data, address);
-            *((uint32_t*)PLL_RECONFIG_BASE + address) = data;
+            s_printx("writing ___ to addr ",2,data, PLL_RECONFIG_BASE + address);
+            PLL_RECONFIG(address) = data;
             break;
         case CG_READ:
 
+            s_printx("about to read from addr ",1,PLL_RECONFIG_BASE + address);
+            readval = PLL_RECONFIG(address);
 
-            readval = *((uint32_t*)PLL_RECONFIG_BASE + address);
+            s_printx("read ___ from addr ",2,readval, address);
             readval = ntohl(readval);
-
-            s_printx("read from addr ",2,readval, address);
 
             cg_write(&ret, 4);
             cg_write(&readval, 4);
             return;
 
             break;
-        case CG_RESET_RECONFIG:
-            s_prints("CG_RESET_RECONFIG\r\n");
-            break;
         default:
             s_prints("error: unknown op\r\n");
             ret = 1;
     }
+    s_printd("line ",1,__LINE__);
 
     ret = htonl(ret);
     cg_write(&ret, 4);
@@ -101,6 +111,7 @@ void handle_transaction()
 
 int main()
 {
+
     s_prints("init cg\r\n");
     while(1)
     {

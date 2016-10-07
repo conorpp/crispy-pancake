@@ -563,7 +563,7 @@
   <parameter name="gui_multiply_factor" value="2" />
   <parameter name="gui_number_of_clocks" value="1" />
   <parameter name="gui_operation_mode" value="direct" />
-  <parameter name="gui_output_clock_frequency0" value="50.0" />
+  <parameter name="gui_output_clock_frequency0" value="100.0" />
   <parameter name="gui_output_clock_frequency1" value="100.0" />
   <parameter name="gui_output_clock_frequency10" value="100.0" />
   <parameter name="gui_output_clock_frequency11" value="100.0" />
@@ -833,6 +833,36 @@
    kind="reset"
    version="16.0"
    start="clk_0.clk_reset"
+   end="onchip_memory2_0.reset1" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="nios2_gen2_0.debug_reset_request"
+   end="pll_reconfig_0.mgmt_reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="nios2_gen2_0.debug_reset_request"
+   end="timer_0.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="nios2_gen2_0.debug_reset_request"
+   end="uart_0.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="nios2_gen2_0.debug_reset_request"
+   end="jtag_uart_0.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="nios2_gen2_0.debug_reset_request"
+   end="pio_0.reset" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="nios2_gen2_0.debug_reset_request"
    end="onchip_memory2_0.reset1" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
