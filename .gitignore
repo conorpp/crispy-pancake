@@ -8,6 +8,7 @@ output_files/
 *.o
 *.a
 *.d
+*.elf
 
 *.pyc
 

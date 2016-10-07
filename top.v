@@ -4,6 +4,7 @@ wire reset;
 wire newclk, glitchclk;
 wire uart_tx, uart_rx;
 wire pll_relock;
+wire glitch_sel = KEY[1];
 
 assign GPIO_0[35] = uart_tx;
 assign uart_rx = GPIO_0[34];
@@ -15,7 +16,7 @@ assign LEDR[0] = count_new[25];
 assign LEDR[2] = count_new[2];
 
 assign GPIO_0[0] = clk;
-assign GPIO_0[1] = newclk;
+assign GPIO_0[1] = ~glitch_sel ? (clk ^ (clk & newclk)) : newclk;
 assign GPIO_0[2] = 0;
 assign GPIO_0[3] = 0;
 assign GPIO_0[4] = clk ^ newclk;
