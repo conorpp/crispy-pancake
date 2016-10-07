@@ -3,6 +3,7 @@ module clock_glitcher(input clk, output glitch, output [9:0] LEDR, inout [35:0] 
 wire reset;
 wire newclk, glitchclk;
 wire uart_tx, uart_rx;
+wire pll_relock;
 
 assign GPIO_0[35] = uart_tx;
 assign uart_rx = GPIO_0[34];
@@ -31,6 +32,7 @@ assign ava_swrite = 0;
 assign ava_swrdata = 0;
 assign ava_saddr = 0;
 
+
 system
 (
 .clk_clk(clk),
@@ -44,6 +46,8 @@ system
 .pll_0_reconfig_from_pll_reconfig_from_pll(pll_bus_from),
 //.pll_0_locked_export(),
 .pll_0_outclk0_clk(newclk),
+.pll_0_reset_reset(reset & (~pll_relock)),
+.gpio_pll_export(pll_relock),
 
 	//.pll_0_phase_en_phase_en(1'b1),
 	//.pll_0_updn_updn(1'b1),

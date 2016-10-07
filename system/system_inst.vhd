@@ -8,7 +8,9 @@
 			pll_reconfig_0_reconfig_to_pll_reconfig_to_pll     : out std_logic_vector(63 downto 0);                    -- reconfig_to_pll
 			reset_reset_n                                      : in  std_logic                     := 'X';             -- reset_n
 			uart_0_rxd                                         : in  std_logic                     := 'X';             -- rxd
-			uart_0_txd                                         : out std_logic                                         -- txd
+			uart_0_txd                                         : out std_logic;                                        -- txd
+			pll_0_reset_reset                                  : in  std_logic                     := 'X';             -- reset
+			gpio_pll_export                                    : out std_logic_vector(7 downto 0)                      -- export
 		);
 	end component system;
 
@@ -22,6 +24,8 @@
 			pll_reconfig_0_reconfig_to_pll_reconfig_to_pll     => CONNECTED_TO_pll_reconfig_0_reconfig_to_pll_reconfig_to_pll,     --   pll_reconfig_0_reconfig_to_pll.reconfig_to_pll
 			reset_reset_n                                      => CONNECTED_TO_reset_reset_n,                                      --                            reset.reset_n
 			uart_0_rxd                                         => CONNECTED_TO_uart_0_rxd,                                         --                           uart_0.rxd
-			uart_0_txd                                         => CONNECTED_TO_uart_0_txd                                          --                                 .txd
+			uart_0_txd                                         => CONNECTED_TO_uart_0_txd,                                         --                                 .txd
+			pll_0_reset_reset                                  => CONNECTED_TO_pll_0_reset_reset,                                  --                      pll_0_reset.reset
+			gpio_pll_export                                    => CONNECTED_TO_gpio_pll_export                                     --                         gpio_pll.export
 		);
 

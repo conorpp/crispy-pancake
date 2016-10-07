@@ -5,9 +5,11 @@
 `timescale 1 ps / 1 ps
 module system (
 		input  wire        clk_clk,                                            //                              clk.clk
+		output wire [7:0]  gpio_pll_export,                                    //                         gpio_pll.export
 		output wire        pll_0_outclk0_clk,                                  //                    pll_0_outclk0.clk
 		output wire [63:0] pll_0_reconfig_from_pll_reconfig_from_pll,          //          pll_0_reconfig_from_pll.reconfig_from_pll
 		input  wire [63:0] pll_0_reconfig_to_pll_reconfig_to_pll,              //            pll_0_reconfig_to_pll.reconfig_to_pll
+		input  wire        pll_0_reset_reset,                                  //                      pll_0_reset.reset
 		input  wire [63:0] pll_reconfig_0_reconfig_from_pll_reconfig_from_pll, // pll_reconfig_0_reconfig_from_pll.reconfig_from_pll
 		output wire [63:0] pll_reconfig_0_reconfig_to_pll_reconfig_to_pll,     //   pll_reconfig_0_reconfig_to_pll.reconfig_to_pll
 		input  wire        reset_reset_n,                                      //                            reset.reset_n
@@ -67,11 +69,16 @@ module system (
 	wire         mm_interconnect_0_uart_0_s1_begintransfer;                      // mm_interconnect_0:uart_0_s1_begintransfer -> uart_0:begintransfer
 	wire         mm_interconnect_0_uart_0_s1_write;                              // mm_interconnect_0:uart_0_s1_write -> uart_0:write_n
 	wire  [15:0] mm_interconnect_0_uart_0_s1_writedata;                          // mm_interconnect_0:uart_0_s1_writedata -> uart_0:writedata
+	wire         mm_interconnect_0_pio_0_s1_chipselect;                          // mm_interconnect_0:pio_0_s1_chipselect -> pio_0:chipselect
+	wire  [31:0] mm_interconnect_0_pio_0_s1_readdata;                            // pio_0:readdata -> mm_interconnect_0:pio_0_s1_readdata
+	wire   [1:0] mm_interconnect_0_pio_0_s1_address;                             // mm_interconnect_0:pio_0_s1_address -> pio_0:address
+	wire         mm_interconnect_0_pio_0_s1_write;                               // mm_interconnect_0:pio_0_s1_write -> pio_0:write_n
+	wire  [31:0] mm_interconnect_0_pio_0_s1_writedata;                           // mm_interconnect_0:pio_0_s1_writedata -> pio_0:writedata
 	wire         irq_mapper_receiver0_irq;                                       // timer_0:irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                       // uart_0:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                       // jtag_uart_0:av_irq -> irq_mapper:receiver2_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                           // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                                 // rst_controller:reset_out -> [irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, pll_reconfig_0:mgmt_reset, rst_translator:in_reset, timer_0:reset_n, uart_0:reset_n]
+	wire         rst_controller_reset_out_reset;                                 // rst_controller:reset_out -> [irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, pio_0:reset_n, pll_reconfig_0:mgmt_reset, rst_translator:in_reset, timer_0:reset_n, uart_0:reset_n]
 	wire         rst_controller_reset_out_reset_req;                             // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 
 	system_jtag_uart_0 jtag_uart_0 (
@@ -129,9 +136,20 @@ module system (
 		.reset_req  (rst_controller_reset_out_reset_req)                //       .reset_req
 	);
 
+	system_pio_0 pio_0 (
+		.clk        (clk_clk),                               //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),       //               reset.reset_n
+		.address    (mm_interconnect_0_pio_0_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_pio_0_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_pio_0_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_pio_0_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_pio_0_s1_readdata),   //                    .readdata
+		.out_port   (gpio_pll_export)                        // external_connection.export
+	);
+
 	system_pll_0 pll_0 (
 		.refclk            (clk_clk),                                   //            refclk.clk
-		.rst               (~reset_reset_n),                            //             reset.reset
+		.rst               (pll_0_reset_reset),                         //             reset.reset
 		.outclk_0          (pll_0_outclk0_clk),                         //           outclk0.clk
 		.reconfig_to_pll   (pll_0_reconfig_to_pll_reconfig_to_pll),     //   reconfig_to_pll.reconfig_to_pll
 		.reconfig_from_pll (pll_0_reconfig_from_pll_reconfig_from_pll), // reconfig_from_pll.reconfig_from_pll
@@ -224,6 +242,11 @@ module system (
 		.onchip_memory2_0_s1_byteenable                 (mm_interconnect_0_onchip_memory2_0_s1_byteenable),               //                                         .byteenable
 		.onchip_memory2_0_s1_chipselect                 (mm_interconnect_0_onchip_memory2_0_s1_chipselect),               //                                         .chipselect
 		.onchip_memory2_0_s1_clken                      (mm_interconnect_0_onchip_memory2_0_s1_clken),                    //                                         .clken
+		.pio_0_s1_address                               (mm_interconnect_0_pio_0_s1_address),                             //                                 pio_0_s1.address
+		.pio_0_s1_write                                 (mm_interconnect_0_pio_0_s1_write),                               //                                         .write
+		.pio_0_s1_readdata                              (mm_interconnect_0_pio_0_s1_readdata),                            //                                         .readdata
+		.pio_0_s1_writedata                             (mm_interconnect_0_pio_0_s1_writedata),                           //                                         .writedata
+		.pio_0_s1_chipselect                            (mm_interconnect_0_pio_0_s1_chipselect),                          //                                         .chipselect
 		.pll_reconfig_0_mgmt_avalon_slave_address       (mm_interconnect_0_pll_reconfig_0_mgmt_avalon_slave_address),     //         pll_reconfig_0_mgmt_avalon_slave.address
 		.pll_reconfig_0_mgmt_avalon_slave_write         (mm_interconnect_0_pll_reconfig_0_mgmt_avalon_slave_write),       //                                         .write
 		.pll_reconfig_0_mgmt_avalon_slave_read          (mm_interconnect_0_pll_reconfig_0_mgmt_avalon_slave_read),        //                                         .read

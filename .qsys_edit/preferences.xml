@@ -10,6 +10,6 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/Basic Functions/Bridges and Adaptors,Library,Library/Interface Protocols/Serial,Project,Library/Basic Functions,Library/Interface Protocols,Library/Basic Functions/Simulation; Debug and Verification,Library/Basic Functions/Simulation; Debug and Verification/Debug and Performance,Library/Basic Functions/Bridges and Adaptors/Memory Mapped" />
+   expandedCategories="Project,Library/Interface Protocols,Library/Interface Protocols/PCI Express/QSYS Example Designs,Library/Processors and Peripherals,Library/Interface Protocols/PCI Express,Library,Library/Processors and Peripherals/Peripherals" />
  <window width="1920" height="1065" x="1366" y="-1" />
 </preferences>

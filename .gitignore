@@ -9,3 +9,4 @@ output_files/
 *.a
 *.d
 
+*.pyc
