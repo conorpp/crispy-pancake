@@ -2,9 +2,11 @@
 project=clock_glitcher
 outputdir=output_files
 verilog=$(wildcard *.v) $(wildcard system/*.v)
+elf=software/main.elf
 
 all: $(outputdir)/$(project).sof
 	nios2-configure-sof $(outputdir)/$(project).sof -d 2
+	nios2-download software/main.elf --go
 
 
 $(outputdir)/$(project).map.rpt:  $(verilog) $(project).qsf

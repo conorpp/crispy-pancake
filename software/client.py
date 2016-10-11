@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import sys, struct
 import serial, binascii
 
@@ -30,13 +31,15 @@ class CG():
                 'charge':   0b001001,
                 'vcodiv':   0b011100,
             }
-
+        self.mem_map_rev = {}
+        for key,val in self.mem_map.iteritems():
+            self.mem_map_rev[val] = key
 
     def send_transaction(self,op,arg1,arg2):
         op = struct.pack('!I',op)
         arg1 = struct.pack('!I',arg1)
         arg2 = struct.pack('!I',arg2)
-        print binascii.hexlify(op), binascii.hexlify(arg1), binascii.hexlify(arg2)
+        #print binascii.hexlify(op), binascii.hexlify(arg1), binascii.hexlify(arg2)
 
         self.ser.write(op)
         self.ser.write(arg1)
@@ -61,18 +64,65 @@ class CG():
 
         ret = self.ser.read(4)
         ret = struct.unpack('!I', ret)[0]
-        print 'read ', hex(ret)
+        #print 'read ', hex(ret)
         return ret
 
     def pll_reset(self,):
         self.send_transaction(Opcodes.CG_RESET_RECONFIG, 0, 0)
+
+    def get_rational(self,dec):
+        n = 1.0
+        d = 1.0
+        tol = 1e-3
+        while True:
+            r = n/d
+            if r > (dec - tol) and r < (dec + tol):
+                break
+            elif r > dec:
+                d += 1.0
+            else:
+                n += 1.0
+            if n >= 0xfd:
+                break
+            if d >= 0xfff0:
+                break
+        return (int(n),int(d))
+
+
+
+
+    def _format(self,num,duty=1.0):
+        num &= 0xff
+        leftover = num - max(int(num* duty),1)
+        if duty > 1:
+            leftover = max( num - int(num * (duty-1)), 1)
+        
+        num |= (max(int(num*duty),1) << 8)
+        num += leftover
+        if duty > 1:
+            num &= (num & 0xff00)
+            num |= leftover
+
+        return num
+
+    def set_glitch(self,factor,duty,phase):
+        frac = self.get_rational(factor*2)
+        M = frac[0]
+        D = frac[1]
+        C = max(D & 0xff, (D & 0xff00)>>1)
+        N = min(D & 0xff, (D & 0xff00)>>1)
+        if N == 0: N += 1
+
+        self.reconfigure(M=M,N=N,C=C,duty=duty,phase=phase)
+
+
 
     def reconfigure(self,**kwargs):
         # TODO add a duty cycle option (it alters M and C parameters for duty cycle ratio).
         """
             keywords M, N, C, phase
 
-            F_out = F_in * M / (4 * N * C)
+            F_out = F_in * M / (N * C)
             p phase shift steps
 
         """
@@ -91,8 +141,14 @@ class CG():
         if phase < 0:
             raise ValueError('PLL phase cant be < 0')
 
-        if duty > 0.99 or duty < 0.01:
+        if duty > 2 or duty < 0.01:
             raise ValueError('Duty cycle must be > 0.01 and < 0.99')
+
+        s = 20/max(M,C)
+        M = self._format(M*s, duty)
+        C = self._format(C*s, duty)
+        N = self._format(N, duty)
+
 
         # set phase in forward direction
         phase = phase | (1<<21)
